@@ -1,1 +1,1 @@
-*{margin:0;padding:0}
+*{margin:0;padding:0}.container{width:100%;height:100vh;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-template-rows:1fr 1fr 1fr}.container .child{border:1px solid #000}.container .child:hover{cursor:pointer}.red{background-color:red}.green{background-color:green}.blue{background-color:blue}.yellow{background-color:#ff0}.pink{background-color:#f891a3}.orange{background-color:orange}.white{background-color:#fff}
