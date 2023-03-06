@@ -44,6 +44,8 @@ function getCoupleSquares(square) {
   if (coupleSquares.length === 2) {
     if (coupleSquares[0].className !== coupleSquares[1].className) {
       resetSquares();
+    } else if (coupleSquares[0] === coupleSquares[1]) {
+      resetSquares();
     } else {
       deleteSquares();
     }
@@ -52,13 +54,12 @@ function getCoupleSquares(square) {
   if (coupleSquares.length > 2) {
     coupleSquares = [];
     coupleSquares.push(square);
-  } 
+  }
 }
 
 function checkUserInput() {
   squares.forEach(function (square) {
     square.onclick = function () {
-
       square.classList.remove("white");
 
       getCoupleSquares(square);
@@ -66,8 +67,15 @@ function checkUserInput() {
   });
 }
 
-paintSquares();
+function playGame() {
+  coverSquares();
+  paintSquares();
+  checkUserInput();
+}
 
-coverSquares();
+document.querySelector(".play-btn").onclick = playGame;
+document.querySelector(".restart-btn").onclick = function() {
+  location.reload();
+};
 
-checkUserInput();
+
