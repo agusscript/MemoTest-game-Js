@@ -2,6 +2,8 @@ const squaresContainer = document.querySelector(".container");
 const squares = squaresContainer.querySelectorAll("div");
 const colors = ["red", "yellow", "orange", "blue", "pink", "green"];
 let coupleSquares = [];
+let arraySquares = [];
+let round = 0;
 
 function getRandomColors() {
   let copyArrayColors = colors.concat(colors);
@@ -18,6 +20,10 @@ function paintSquares() {
   }
 }
 
+function discoverSquare(square) {
+  square.classList.remove("white");
+}
+
 function coverSquares() {
   squares.forEach(function (square) {
     square.classList.add("white");
@@ -28,13 +34,24 @@ function resetSquares() {
   setTimeout(function () {
     coupleSquares[0].classList.add("white");
     coupleSquares[1].classList.add("white");
-  }, 400);
+  }, 220);
 }
 
 function deleteSquares() {
+  coupleSquares[0].style.pointerEvents = "none";
+  coupleSquares[1].style.pointerEvents = "none";
+}
+
+function pushSquares() {
+  arraySquares.push(coupleSquares[0]);
+  arraySquares.push(coupleSquares[1]);
+}
+
+function notifyGameOver() {
   setTimeout(function () {
-    coupleSquares[0].style.pointerEvents = "none";
-    coupleSquares[1].style.pointerEvents = "none";
+    if (arraySquares.length === 12) {
+      alert(`You won the game in ${round} rounds`);
+    }
   }, 400);
 }
 
@@ -48,7 +65,9 @@ function getCoupleSquares(square) {
       resetSquares();
     } else {
       deleteSquares();
+      pushSquares();
     }
+    round++;
   }
 
   if (coupleSquares.length > 2) {
@@ -60,22 +79,21 @@ function getCoupleSquares(square) {
 function checkUserInput() {
   squares.forEach(function (square) {
     square.onclick = function () {
-      square.classList.remove("white");
-
+      discoverSquare(square);
       getCoupleSquares(square);
+      notifyGameOver();
     };
   });
 }
 
 function playGame() {
-  coverSquares();
   paintSquares();
+  coverSquares();
   checkUserInput();
 }
 
-document.querySelector(".play-btn").onclick = playGame;
-document.querySelector(".restart-btn").onclick = function() {
+playGame();
+
+document.querySelector(".restart-btn").onclick = function () {
   location.reload();
 };
-
-
