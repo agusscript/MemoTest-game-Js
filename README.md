@@ -1,6 +1,6 @@
 # MemoTest colors Js
 
-![](images/screenshot.png)
+![](images/screenshot-desktop.png)
 
 - Simple memoTest game made whit js to practice and learn.
 
