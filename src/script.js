@@ -50,7 +50,7 @@ function pushSquares() {
 function notifyGameOver() {
   setTimeout(function () {
     if (arraySquares.length === 12) {
-      alert(`You won the game in ${round} rounds`);
+    return alert(`You won the game in ${round} rounds`);
     }
   }, 400);
 }
