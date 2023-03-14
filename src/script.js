@@ -73,7 +73,7 @@ function notifyGameOver() {
     if (arraySquares.length === 12) {
       return alert(`You won the game in ${round} rounds`);
     }
-  }, 400);
+  }, 200);
 }
 
 function checkUserInput() {

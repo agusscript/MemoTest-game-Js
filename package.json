@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "memotest colors with js",
   "main": "index.html",
+  "scripts": {
+    "cypress-open": "cypress open"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/agusscript/MemoTest-colors-Js.git"
   },
   "author": "Agustin Sanchez",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "cypress": "^12.7.0"
   }
 }
