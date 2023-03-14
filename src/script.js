@@ -30,28 +30,20 @@ function coverSquares() {
   });
 }
 
-function resetSquares() {
-  setTimeout(function () {
-    coupleSquares[0].classList.add("white");
-    coupleSquares[1].classList.add("white");
-  }, 220);
+function deleteSquares(argument1, argument2) {
+  argument1.style.pointerEvents = "none";
+  argument2.style.pointerEvents = "none";
 }
 
-function deleteSquares() {
-  coupleSquares[0].style.pointerEvents = "none";
-  coupleSquares[1].style.pointerEvents = "none";
+function pushSquares(argument1, argument2) {
+  arraySquares.push(argument1);
+  arraySquares.push(argument2);
 }
 
-function pushSquares() {
-  arraySquares.push(coupleSquares[0]);
-  arraySquares.push(coupleSquares[1]);
-}
-
-function notifyGameOver() {
-  setTimeout(function () {
-    if (arraySquares.length === 12) {
-    return alert(`You won the game in ${round} rounds`);
-    }
+function resetSquares(argument1, argument2) {
+  setTimeout(() => {
+    argument1.classList.add("white");
+    argument2.classList.add("white");
   }, 400);
 }
 
@@ -59,21 +51,29 @@ function getCoupleSquares(square) {
   coupleSquares.push(square);
 
   if (coupleSquares.length === 2) {
-    if (coupleSquares[0].className !== coupleSquares[1].className) {
-      resetSquares();
-    } else if (coupleSquares[0] === coupleSquares[1]) {
-      resetSquares();
-    } else {
-      deleteSquares();
-      pushSquares();
-    }
+    compareSquares(coupleSquares[0], coupleSquares[1]);
     round++;
-  }
-
-  if (coupleSquares.length > 2) {
     coupleSquares = [];
-    coupleSquares.push(square);
   }
+}
+
+function compareSquares(square1, square2) {
+  if (square1.className !== square2.className) {
+    resetSquares(square1, square2);
+  } else if (square1 === square2) {
+    resetSquares(square1, square2);
+  } else {
+    deleteSquares(square1, square2);
+    pushSquares(square1, square2);
+  }
+}
+
+function notifyGameOver() {
+  setTimeout(function () {
+    if (arraySquares.length === 12) {
+      return alert(`You won the game in ${round} rounds`);
+    }
+  }, 400);
 }
 
 function checkUserInput() {
